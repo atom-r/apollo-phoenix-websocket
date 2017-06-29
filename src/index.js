@@ -64,6 +64,7 @@ const getChannel = (socket, options) => {
 
 const socketConnect = (sockets, options) => new Promise((resolve, reject) => {
   const socket = getSocket(sockets, options)
+  global.ourFuckingSocket = socket;
   if (socket.conn.isConnected()) {
     resolve(socket)
   } else {
@@ -150,5 +151,5 @@ export function createNetworkInterface(ifaceOpts) {
                       responseMiddleware,
                       responseData)
 
-  return {query, use, useAfter}
+  return {query, use, useAfter, socket: ourFuckingSocket}
 }
